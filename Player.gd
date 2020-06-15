@@ -45,11 +45,14 @@ var onLadder = false
 var ladderUp
 var ladderSpeed = 14
 
+var punchArea
+
 func _ready():
 	camera = $Rotation_Helper/Camera
 	rotation_helper = $Rotation_Helper
 	climbingArea = $Rotation_Helper/ClimbingCheck/Aim_Area/Area
-		
+	punchArea = $Rotation_Helper/PunchCheck/Aim_Area/Area
+	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 	flashlight = $Rotation_Helper/Flashlight
@@ -119,6 +122,15 @@ func process_input(delta):
 			flashlight.show()
 	#---
 	
+	#---
+	#Punching
+	if Input.is_action_just_pressed("fire"):
+		var areas = punchArea.get_overlapping_bodies()
+		if !areas.empty():
+			if areas[0].name == "PunchWall":
+				print("Got punch wall")
+				areas[0].queue_free()
+			
 func process_movement(delta):
 	dir.y = 0
 	dir = dir.normalized()

@@ -1,7 +1,8 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://LadderProto.tscn" type="PackedScene" id=2]
+[ext_resource path="res://PunchWall.tscn" type="PackedScene" id=3]
 
 [sub_resource type="PlaneMesh" id=1]
 size = Vector2( 80, 80 )
@@ -83,6 +84,9 @@ bounce = 0.6
 bounce = 0.6
 
 [node name="Testing_Area" type="Spatial"]
+
+[node name="PunchWall" parent="." instance=ExtResource( 3 )]
+transform = Transform( 2.88554, 0, 0, 0, 2.88554, 0, 0, 0, 2.88554, 18.9832, -0.441298, -30.7476 )
 
 [node name="LadderProto" parent="." instance=ExtResource( 2 )]
 transform = Transform( 2.241, 0, 0, 0, 2.241, 0, 0, 0, 2.241, 27.7535, 6.46121, 2.21588 )

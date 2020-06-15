@@ -1,0 +1,70 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/Ruin_Level_Objects/DustStone.material" type="Material" id=1]
+
+[sub_resource type="SpatialMaterial" id=3]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 2, 3, 0.354194 )
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 0.469949, 2.79775, 0.388014 )
+
+[node name="PunchWall" type="Spatial"]
+
+[node name="PunchWall" type="StaticBody" parent="."]
+
+[node name="CSGBox" type="CSGBox" parent="PunchWall"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
+material_override = ExtResource( 1 )
+width = 4.0
+height = 6.0
+material = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="PunchWall"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
+shape = SubResource( 1 )
+
+[node name="PunchWall2" type="StaticBody" parent="."]
+collision_layer = 0
+collision_mask = 0
+
+[node name="StaticBody" type="StaticBody" parent="PunchWall2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.53478, 2.86402, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="PunchWall2/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0370154, 0, 0 )
+shape = SubResource( 2 )
+
+[node name="StaticBody2" type="StaticBody" parent="PunchWall2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.63272, 2.86402, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="PunchWall2/StaticBody2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0370154, 0, 0 )
+shape = SubResource( 2 )
+
+[node name="CSGBox" type="CSGBox" parent="PunchWall2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.58096, 2.89792, 0 )
+material_override = ExtResource( 1 )
+width = 0.820823
+height = 5.74486
+depth = 0.770369
+
+[node name="CSGBox2" type="CSGBox" parent="PunchWall2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.64282, 2.89792, -0.00892591 )
+material_override = ExtResource( 1 )
+width = 0.820823
+height = 5.74486
+depth = 0.770369
+
+[node name="CSGBox3" type="CSGBox" parent="PunchWall2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00273168, 5.28061, -0.0177078 )
+material_override = ExtResource( 1 )
+width = 2.48808
+height = 1.00218
+depth = 0.770369
+
+[node name="CollisionShape" type="CollisionShape" parent="PunchWall2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
+shape = SubResource( 1 )
+disabled = true
