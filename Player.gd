@@ -1,14 +1,24 @@
 extends KinematicBody
 
-const GRAVITY = -24.8
+#og amt: -24.8
+#juicy amt: -50
+const GRAVITY = -50
 var vel = Vector3()
-const MAX_SPEED = 20
-const JUMP_SPEED = 18
-const ACCEL = 4.5
+#og amt: 20
+#juicy amt: 
+const MAX_SPEED = 25
+#og amt: 18
+#juicy amt: 30
+const JUMP_SPEED = 30
+#og amt: 4.5
+#juicy amt: 7.5
+const ACCEL = 7.5
 
 var dir = Vector3()
 
-const DEACCEL = 16
+#og amt: 16
+#juicy amt: 5
+const DEACCEL = 5
 const MAX_SLOPE_ANGLE = 40
 
 var camera
@@ -16,16 +26,30 @@ var rotation_helper
 
 var MOUSE_SENSITIVITY = 0.05
 
-const MAX_SPRINT_SPEED = 30
+const MAX_SPRINT_SPEED = 35
 const SPRINT_ACCEL = 18
 var is_sprinting = false
 
 var flashlight
 
+#---
+#End tutorial variables
+#Start self variables
+#---
+
+#bool to denote whether active as witch or not
+var activeWitch = false
+
+var climbingArea
+var onLadder = false
+var ladderUp
+var ladderSpeed = 14
+
 func _ready():
 	camera = $Rotation_Helper/Camera
 	rotation_helper = $Rotation_Helper
-	
+	climbingArea = $Rotation_Helper/ClimbingCheck/Aim_Area/Area
+		
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 	flashlight = $Rotation_Helper/Flashlight
@@ -44,7 +68,10 @@ func process_input(delta):
 	var input_movement_vector = Vector2()
 	
 	if Input.is_action_pressed("movement_forward"):
-		input_movement_vector.y += 1
+		if onLadder:
+			ladderUp = true
+		else:
+			input_movement_vector.y += 1
 	if Input.is_action_pressed("movement_backward"):
 		input_movement_vector.y -= 1
 	if Input.is_action_pressed("movement_left"):
@@ -96,7 +123,10 @@ func process_movement(delta):
 	dir.y = 0
 	dir = dir.normalized()
 	
-	vel.y += delta * GRAVITY
+	if ladderUp:
+		vel.y += delta * ladderSpeed
+	else:
+		vel.y += delta * GRAVITY
 	
 	var hvel = vel
 	hvel.y = 0
@@ -131,4 +161,19 @@ func _input(event):
 		var camera_rot = rotation_helper.rotation_degrees
 		camera_rot.x = clamp(camera_rot.x, -70, 70)
 		rotation_helper.rotation_degrees = camera_rot
-		
+		#print(rotation_helper.rotation_degrees.y)
+
+
+
+
+func _on_Area_body_entered(body):
+	if body.name == "Ladder":
+		print("Found a ladder")
+		onLadder = true
+
+
+func _on_Area_body_exited(body):
+	if body.name == "Ladder":
+		print("Exiting a ladder")
+		onLadder = false
+		ladderUp = false

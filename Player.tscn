@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://assets/Colors.material" type="Material" id=1]
 [ext_resource path="res://assets/Emission.material" type="Material" id=2]
@@ -11,8 +11,8 @@
 [ext_resource path="res://Player.gd" type="Script" id=9]
 
 [sub_resource type="CapsuleShape" id=1]
-radius = 1.2
-height = 9.0
+radius = 1.1097
+height = 8.38831
 
 [sub_resource type="BoxShape" id=2]
 extents = Vector3( 0.8, 0.2, 0.8 )
@@ -3847,6 +3847,9 @@ size = 42
 use_filter = true
 font_data = ExtResource( 8 )
 
+[sub_resource type="BoxShape" id=26]
+extents = Vector3( 1.71677, 5.23051, 1.63545 )
+
 [node name="Player" type="KinematicBody"]
 script = ExtResource( 9 )
 
@@ -4073,6 +4076,7 @@ far = 180.0
 
 [node name="Gun_Fire_Points" type="Spatial" parent="Rotation_Helper"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -12.3914, 0 )
+visible = false
 
 [node name="Rifle_Point" type="Spatial" parent="Rotation_Helper/Gun_Fire_Points"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.163315, 10.4607, 7.04431 )
@@ -4097,6 +4101,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.436506, 11.3604, 4.77607 )
 
 [node name="Gun_Aim_Point" type="Spatial" parent="Rotation_Helper"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.307539, 20.0487 )
+visible = false
 
 [node name="MeshInstance" type="MeshInstance" parent="Rotation_Helper/Gun_Aim_Point"]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
@@ -4222,3 +4227,16 @@ text = "You died
 0.00 seconds till respawn"
 align = 1
 valign = 1
+
+[node name="ClimbingCheck" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.239, 0 )
+
+[node name="Aim_Area" type="Spatial" parent="ClimbingCheck"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.07227, 3.05781 )
+
+[node name="Area" type="Area" parent="ClimbingCheck/Aim_Area"]
+
+[node name="CollisionShape" type="CollisionShape" parent="ClimbingCheck/Aim_Area/Area"]
+shape = SubResource( 26 )
+[connection signal="body_entered" from="ClimbingCheck/Aim_Area/Area" to="." method="_on_Area_body_entered"]
+[connection signal="body_exited" from="ClimbingCheck/Aim_Area/Area" to="." method="_on_Area_body_exited"]
