@@ -46,12 +46,22 @@ var ladderUp
 var ladderSpeed = 14
 
 var punchArea
+var hackArea
+var currWep = 1
+var punchHand
+var hackHand
+var witchWand
 
 func _ready():
 	camera = $Rotation_Helper/Camera
 	rotation_helper = $Rotation_Helper
 	climbingArea = $Rotation_Helper/ClimbingCheck/Aim_Area/Area
 	punchArea = $Rotation_Helper/PunchCheck/Aim_Area/Area
+	hackArea = $Rotation_Helper/HackCheck/Aim_Area/Area
+	
+	punchHand = $Rotation_Helper/PunchCheck/PunchHand
+	hackHand = $Rotation_Helper/HackCheck/HackHand
+	witchWand = $Rotation_Helper/WandCheck/Spatial/RayCast
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
@@ -125,12 +135,33 @@ func process_input(delta):
 	#---
 	#Punching
 	if Input.is_action_just_pressed("fire"):
-		var areas = punchArea.get_overlapping_bodies()
-		if !areas.empty():
-			if areas[0].name == "PunchWall":
-				print("Got punch wall")
-				areas[0].queue_free()
-			
+		if currWep == 1:
+			var areas = punchArea.get_overlapping_bodies()
+			if !areas.empty():
+				if areas[0].name == "PunchWall":
+					print("Got punch wall")
+					areas[0].queue_free()
+		elif currWep == 2:
+			print("Hacking the planet!")
+			var result = witchWand.get_collider()
+			if result != null:
+				print(result.name)
+				if result.name == "TestBlock":
+					result.testRay()
+	#---
+	
+	#---
+	#Switch weapons check
+	if Input.is_action_just_pressed("item_1"):
+		punchHand.visible = true
+		hackHand.visible = false
+		currWep = 1
+		
+	if Input.is_action_just_pressed("item_2"):
+		hackHand.visible = true
+		punchHand.visible = false
+		currWep = 2
+	#---
 func process_movement(delta):
 	dir.y = 0
 	dir = dir.normalized()

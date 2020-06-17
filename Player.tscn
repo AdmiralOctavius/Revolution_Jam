@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://assets/Colors.material" type="Material" id=1]
 [ext_resource path="res://assets/Emission.material" type="Material" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://assets/32-32_white.png" type="Texture" id=7]
 [ext_resource path="res://assets/Titillium-Regular.otf" type="DynamicFontData" id=8]
 [ext_resource path="res://Player.gd" type="Script" id=9]
+[ext_resource path="res://assets/Gamemode_Objects/Metal_Blue.material" type="Material" id=10]
+[ext_resource path="res://assets/Ruin_Level_Objects/DustStone.material" type="Material" id=11]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 1.1097
@@ -4127,6 +4129,61 @@ transform = Transform( 1, 0, 0, 0, 0.983001, 0.1836, 0, -0.1836, 0.983001, 0, -0
 visible = false
 
 [node name="PunchCheck" type="Spatial" parent="Rotation_Helper"]
+visible = false
+
+[node name="PunchHand" type="CSGBox" parent="Rotation_Helper/PunchCheck"]
+transform = Transform( 1, 0, 0, 0, 0.788247, 0.615359, 0, -0.615359, 0.788247, -3, -3.51705, 2.06515 )
+material_override = ExtResource( 10 )
+width = 1.20436
+height = 1.16572
+
+[node name="CSGBox3" type="CSGBox" parent="Rotation_Helper/PunchCheck/PunchHand"]
+transform = Transform( 0.268723, -0.603832, 0.800064, 0.648085, -0.0592863, -0.552442, 0.252465, 0.794903, 0.566549, 0.0752389, -0.119395, 1.2645 )
+width = 1.59556
+height = 0.718118
+depth = 0.946463
+
+[node name="CSGBox5" type="CSGBox" parent="Rotation_Helper/PunchCheck/PunchHand/CSGBox3"]
+transform = Transform( 1, 0, 0, 0, 0.385166, -0.204828, 0, 0.108648, 0.373938, 0.48182, 0.0926433, 0.550785 )
+width = 0.293552
+height = 0.718118
+depth = 0.759988
+
+[node name="CSGBox11" type="CSGBox" parent="Rotation_Helper/PunchCheck/PunchHand/CSGBox3"]
+transform = Transform( 1, 0, 0, 0, 0.21043, -0.430673, 0, 0.306581, 0.162744, 0.48182, -0.0224695, 0.700852 )
+width = 0.293552
+height = 0.718118
+depth = 0.759988
+
+[node name="CSGBox8" type="CSGBox" parent="Rotation_Helper/PunchCheck/PunchHand/CSGBox3"]
+transform = Transform( -0.0572296, 0.450882, 0.837054, -0.743788, -0.0284464, 0.0024725, 0.0270225, -0.199078, 0.832085, 0.93314, 0.0529037, 0.242356 )
+width = 0.293552
+height = 0.718118
+depth = 0.545682
+
+[node name="CSGBox6" type="CSGBox" parent="Rotation_Helper/PunchCheck/PunchHand/CSGBox3"]
+transform = Transform( 1, 0, 0, 0, 0.385166, -0.204828, 0, 0.108648, 0.373938, 0.0043478, 0.0901184, 0.551135 )
+width = 0.289125
+height = 0.718118
+depth = 0.759988
+
+[node name="CSGBox7" type="CSGBox" parent="Rotation_Helper/PunchCheck/PunchHand/CSGBox3"]
+transform = Transform( 1, 0, 0, 0, 0.385166, -0.204828, 0, 0.108648, 0.373938, -0.436674, 0.0926433, 0.550785 )
+width = 0.258097
+height = 0.718118
+depth = 0.759988
+
+[node name="CSGBox10" type="CSGBox" parent="Rotation_Helper/PunchCheck/PunchHand/CSGBox3"]
+transform = Transform( 1, 0, 0, 0, 0.21043, -0.430673, 0, 0.306581, 0.162744, 0.0043478, -0.024632, 0.699644 )
+width = 0.289125
+height = 0.718118
+depth = 0.759988
+
+[node name="CSGBox9" type="CSGBox" parent="Rotation_Helper/PunchCheck/PunchHand/CSGBox3"]
+transform = Transform( 1, 0, 0, 0, 0.21043, -0.430673, 0, 0.306581, 0.162744, -0.436674, -0.0224695, 0.700852 )
+width = 0.258097
+height = 0.718118
+depth = 0.759988
 
 [node name="Aim_Area" type="Spatial" parent="Rotation_Helper/PunchCheck"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.166, 5.39841 )
@@ -4135,6 +4192,105 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.166, 5.39841 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Rotation_Helper/PunchCheck/Aim_Area/Area"]
 shape = SubResource( 24 )
+
+[node name="HackCheck" type="Spatial" parent="Rotation_Helper"]
+
+[node name="HackHand" type="CSGBox" parent="Rotation_Helper/HackCheck"]
+transform = Transform( 1, 0, 0, 0, 0.788247, 0.615359, 0, -0.615359, 0.788247, -3, -3.51705, 2.06515 )
+visible = false
+material_override = ExtResource( 10 )
+width = 1.20436
+height = 1.16572
+
+[node name="CSGBox3" type="CSGBox" parent="Rotation_Helper/HackCheck/HackHand"]
+transform = Transform( 0.745631, 0, 0, 0, 0.92666, -0.422997, 0, 0.375901, 1.04276, -0.0389078, 0.0101738, 1.26974 )
+width = 1.59556
+height = 0.718118
+depth = 0.946463
+
+[node name="CSGBox5" type="CSGBox" parent="Rotation_Helper/HackCheck/HackHand"]
+transform = Transform( 0.745631, 0, 0, 0, 0.300291, -0.755049, 0, 0.271744, 0.83437, 0.320352, -0.22623, 1.99326 )
+width = 0.293552
+height = 0.718118
+depth = 0.759988
+
+[node name="CSGBox8" type="CSGBox" parent="Rotation_Helper/HackCheck/HackHand"]
+transform = Transform( -0.0426722, 0.336192, 0.624133, -0.700669, 0.0578494, -0.349678, -0.251412, -0.218284, 0.868594, 0.65687, -0.0433178, 1.54235 )
+width = 0.293552
+height = 0.718118
+depth = 0.545682
+
+[node name="CSGBox6" type="CSGBox" parent="Rotation_Helper/HackCheck/HackHand"]
+transform = Transform( 0.745631, 0, 0, 0, 0.300291, -0.755049, 0, 0.271744, 0.83437, -0.035666, -0.229661, 1.99388 )
+width = 0.289125
+height = 0.718118
+depth = 0.759988
+
+[node name="CSGBox7" type="CSGBox" parent="Rotation_Helper/HackCheck/HackHand"]
+transform = Transform( 0.745631, 0, 0, 0, 0.300291, -0.755049, 0, 0.271744, 0.83437, -0.364506, -0.22623, 1.99326 )
+width = 0.258097
+height = 0.718118
+depth = 0.759988
+
+[node name="Aim_Area" type="Spatial" parent="Rotation_Helper/HackCheck"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.166, 5.39841 )
+
+[node name="Area" type="Area" parent="Rotation_Helper/HackCheck/Aim_Area"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Rotation_Helper/HackCheck/Aim_Area/Area"]
+shape = SubResource( 24 )
+
+[node name="WandCheck" type="Spatial" parent="Rotation_Helper"]
+
+[node name="Spatial" type="Spatial" parent="Rotation_Helper/WandCheck"]
+
+[node name="HackHand2" type="CSGBox" parent="Rotation_Helper/WandCheck/Spatial"]
+transform = Transform( 1, 0, 0, 0, 0.788247, 0.615359, 0, -0.615359, 0.788247, 3.96422, -3.51944, 2.06515 )
+material_override = ExtResource( 10 )
+width = 1.20436
+height = 1.16572
+
+[node name="CSGBox3" type="CSGBox" parent="Rotation_Helper/WandCheck/Spatial/HackHand2"]
+transform = Transform( -0.00365688, -0.961739, -0.308242, 0.587734, 0.164845, -0.667162, 0.458825, -0.218824, 0.852148, 0.276525, -0.0331912, 1.23589 )
+width = 1.59556
+height = 0.718118
+depth = 0.946463
+
+[node name="Wand" type="CSGBox" parent="Rotation_Helper/WandCheck/Spatial/HackHand2"]
+transform = Transform( -0.00214897, -0.237363, 0.0480271, 0.436763, -0.0649425, -2.4334, 0.340967, 0.080796, 3.11756, -0.43233, -0.759373, 2.37125 )
+material_override = ExtResource( 11 )
+width = 0.293552
+height = 0.718118
+depth = 0.759988
+
+[node name="CSGBox8" type="CSGBox" parent="Rotation_Helper/WandCheck/Spatial/HackHand2"]
+transform = Transform( 0.70721, 0.0870734, -0.261922, -0.174274, 0.393127, -0.0627624, 0.159527, 0.0434569, 1.09258, 0.14753, 0.362278, 1.85898 )
+width = 0.293552
+height = 0.718118
+depth = 0.545682
+
+[node name="CSGBox6" type="CSGBox" parent="Rotation_Helper/WandCheck/Spatial/HackHand2"]
+transform = Transform( -0.00365688, -0.403919, 0.0817275, 0.587734, -0.0196618, -0.690311, 0.458825, 0.0219667, 0.884909, 0.0199585, -0.473692, 1.80337 )
+width = 0.289125
+height = 0.718118
+depth = 0.759988
+
+[node name="CSGBox9" type="CSGBox" parent="Rotation_Helper/WandCheck/Spatial/HackHand2"]
+transform = Transform( -0.00365688, -0.403919, 0.0817275, 0.587734, -0.0196618, -0.690311, 0.458825, 0.0219667, 0.884909, 0.0168331, -0.229572, 1.97713 )
+width = 0.289125
+height = 0.718118
+depth = 0.759988
+
+[node name="CSGBox7" type="CSGBox" parent="Rotation_Helper/WandCheck/Spatial/HackHand2"]
+transform = Transform( -0.00365688, -0.403919, 0.0817275, 0.587734, -0.0196618, -0.690311, 0.458825, 0.0219667, 0.884909, 0.0192499, -0.731303, 1.59896 )
+width = 0.258097
+height = 0.718118
+depth = 0.759988
+
+[node name="RayCast" type="RayCast" parent="Rotation_Helper/WandCheck/Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0 )
+enabled = true
+cast_to = Vector3( 0, 0, 50 )
 
 [node name="HUD" type="Control" parent="."]
 anchor_right = 1.0
