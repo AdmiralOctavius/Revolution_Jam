@@ -1,0 +1,36 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path.s3tc="res://.import/tile_016_Height.png-7a24c05a185b6fb9b77ad0b8b54a2a8b.s3tc.stex"
+path.etc2="res://.import/tile_016_Height.png-7a24c05a185b6fb9b77ad0b8b54a2a8b.etc2.stex"
+metadata={
+"imported_formats": [ "s3tc", "etc2" ],
+"vram_texture": true
+}
+
+[deps]
+
+source_file="res://assets/64Tex/TEXTURES/TILE/tile_016/tile_016_Height.png"
+dest_files=[ "res://.import/tile_016_Height.png-7a24c05a185b6fb9b77ad0b8b54a2a8b.s3tc.stex", "res://.import/tile_016_Height.png-7a24c05a185b6fb9b77ad0b8b54a2a8b.etc2.stex" ]
+
+[params]
+
+compress/mode=2
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=true
+flags/filter=false
+flags/mipmaps=true
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+stream=false
+size_limit=0
+detect_3d=false
+svg/scale=1.0

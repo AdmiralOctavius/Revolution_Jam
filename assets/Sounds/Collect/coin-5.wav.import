@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/coin-5.wav-53d4600869090d46ec9db30ab88242a4.sample"
+
+[deps]
+
+source_file="res://assets/Sounds/Collect/coin-5.wav"
+dest_files=[ "res://.import/coin-5.wav-53d4600869090d46ec9db30ab88242a4.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

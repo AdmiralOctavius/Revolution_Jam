@@ -40,6 +40,7 @@ var flashlight
 #bool to denote whether active as witch or not
 export var activeWitch = false
 
+export var activeRobo = false
 #bool to determine if active player character
 export var activePlayer = false
 
@@ -57,6 +58,9 @@ var witchWand
 
 var talking
 
+var punchHandVis
+var witchWandVis
+
 func _ready():
 	camera = $Rotation_Helper/Camera
 	rotation_helper = $Rotation_Helper
@@ -68,9 +72,14 @@ func _ready():
 	hackHand = $Rotation_Helper/HackCheck/HackHand
 	witchWand = $Rotation_Helper/WandCheck/Spatial/RayCast
 	
+	punchHandVis = $Rotation_Helper/PunchCheck
+	witchWandVis = $Rotation_Helper/WandCheck
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 	flashlight = $Rotation_Helper/Flashlight
+	
+	unhide_weps()
+	
 	
 func _physics_process(delta):
 	if !talking:
@@ -143,13 +152,13 @@ func process_input(delta):
 		#---
 		#Punching
 		if Input.is_action_just_pressed("fire"):
-			if currWep == 1:
+			if activeWitch == false:
 				var areas = punchArea.get_overlapping_bodies()
 				if !areas.empty():
 					if areas[0].name == "PunchWall":
 						print("Got punch wall")
 						areas[0].queue_free()
-			elif currWep == 2:
+			else:
 				print("Hacking the planet!")
 				var result = witchWand.get_collider()
 				if result != null:
@@ -160,15 +169,15 @@ func process_input(delta):
 		
 		#---
 		#Switch weapons check
-		if Input.is_action_just_pressed("item_1"):
-			punchHand.visible = true
-			hackHand.visible = false
-			currWep = 1
+		#if Input.is_action_just_pressed("item_1"):
+		#	punchHand.visible = true
+		#	hackHand.visible = false
+		#	currWep = 1
 			
-		if Input.is_action_just_pressed("item_2"):
-			hackHand.visible = true
-			punchHand.visible = false
-			currWep = 2
+		#if Input.is_action_just_pressed("item_2"):
+		#	hackHand.visible = true
+		#	punchHand.visible = false
+		#	currWep = 2
 		#---
 		
 		#---
@@ -252,3 +261,20 @@ func _on_Area_body_exited(body):
 
 func _set_Active_Player():
 	activePlayer = true
+
+func unhide_weps():
+	if activeWitch == true:
+		
+		#witchWandVis.visible = true
+		witchWandVis.show()
+		#punchHand.visible = false
+		#punchHand.hide()
+		print(witchWand.visible)
+	
+	if activeRobo == true:
+		
+		#witchWand.visible = false
+		#witchWand.hide()
+		#punchHand.visible = true
+		punchHandVis.show()
+		print(punchHand.visible)

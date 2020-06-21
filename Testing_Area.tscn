@@ -7,6 +7,8 @@
 [ext_resource path="res://CodeScenes/IzzyCode/textured_block.tscn" type="PackedScene" id=5]
 [ext_resource path="res://CodeScenes/IzzyCode/TestSpriteCharacter.tscn" type="PackedScene" id=6]
 [ext_resource path="res://CodeScenes/CassieCode/NPCExample.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/Materials/Mat2.material" type="Material" id=8]
+[ext_resource path="res://WorldEnvironment_base.tscn" type="PackedScene" id=9]
 
 [sub_resource type="PlaneMesh" id=1]
 size = Vector2( 80, 80 )
@@ -23,42 +25,6 @@ height = 6.0
 
 [sub_resource type="SpatialMaterial" id=5]
 flags_unshaded = true
-
-[sub_resource type="ProceduralSky" id=6]
-radiance_size = 4
-sky_top_color = Color( 0.472656, 0.704064, 1, 1 )
-sky_horizon_color = Color( 0.24147, 0.469106, 0.824219, 1 )
-sky_curve = 0.25
-ground_bottom_color = Color( 0.0280151, 0.0804138, 0.132812, 1 )
-ground_horizon_color = Color( 0.138657, 0.367696, 0.910156, 1 )
-ground_curve = 0.01
-sun_color = Color( 1, 0.932556, 0.867188, 1 )
-sun_energy = 16.0
-
-[sub_resource type="Environment" id=7]
-background_mode = 2
-background_sky = SubResource( 6 )
-ambient_light_color = Color( 1, 0.934814, 0.90625, 1 )
-ambient_light_energy = 0.17
-ambient_light_sky_contribution = 0.6
-fog_enabled = true
-fog_depth_begin = 26.3
-fog_height_max = 100.0
-tonemap_mode = 3
-ssao_enabled = true
-ssao_light_affect = 1.0
-dof_blur_far_distance = 24.0
-dof_blur_far_amount = 0.08
-glow_enabled = true
-glow_levels/1 = true
-glow_levels/2 = true
-glow_levels/5 = false
-glow_intensity = 1.0
-glow_strength = 1.1
-glow_bloom = 0.04
-glow_blend_mode = 0
-glow_bicubic_upscale = true
-adjustment_enabled = true
 
 [sub_resource type="BoxShape" id=8]
 extents = Vector3( 3, 3, 3 )
@@ -111,6 +77,7 @@ transform = Transform( 2.241, 0, 0, 0, 2.241, 0, 0, 0, 2.241, 27.7535, 6.46121, 
 [node name="Box" type="Spatial" parent="."]
 
 [node name="Floor_plane" type="MeshInstance" parent="Box"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0345974, 0.0240669, 0.0209761 )
 mesh = SubResource( 1 )
 material/0 = SubResource( 2 )
 
@@ -142,7 +109,8 @@ material/0 = SubResource( 2 )
 shape = SubResource( 3 )
 
 [node name="Wall_2" type="MeshInstance" parent="Box"]
-transform = Transform( -1.62921e-07, -1, 0.000345306, 0, 0.000345306, 1, -1, 1.62921e-07, -5.62574e-11, 38.2511, 37.0752, 0.0846462 )
+transform = Transform( 0, -0.946, 0, 0, 0, 1, -1, 0, 0, 38.251, 37.075, 0.085 )
+material_override = ExtResource( 8 )
 cast_shadow = 2
 mesh = SubResource( 1 )
 material/0 = SubResource( 2 )
@@ -151,9 +119,6 @@ material/0 = SubResource( 2 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Box/Wall_2/StaticBody"]
 shape = SubResource( 3 )
-
-[node name="Spatial" parent="Box/Wall_2" instance=ExtResource( 5 )]
-transform = Transform( 2.45079, 0, 0, 0, 2.45079, -2.24628e-17, -8.32667e-17, -2.24628e-17, 2.45079, 2.02887, 20.3126, -32.7172 )
 
 [node name="Wall_3" type="MeshInstance" parent="Box"]
 transform = Transform( -1.62921e-07, 1, -0.000488118, 0, 0.000488118, 1, 1, 1.62921e-07, -7.95246e-11, -40.2198, 37.0752, 0.0846462 )
@@ -199,8 +164,7 @@ shadow_enabled = true
 spot_range = 17.7437
 spot_angle = 21.8311
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 7 )
+[node name="WorldEnvironment" parent="." instance=ExtResource( 9 )]
 
 [node name="Cubes" type="Spatial" parent="."]
 
@@ -358,3 +322,6 @@ transform = Transform( -0.0240484, 0, -0.999711, 0, 1, 0, 0.999711, 0, -0.024048
 
 [node name="NPCExample" parent="." instance=ExtResource( 7 )]
 transform = Transform( 0.783744, -1.72064, 2.80328e-07, 0, -3.08039e-07, -1.89073, 1.72064, 0.783744, -1.27688e-07, -29.8977, 5.08986, 18.5961 )
+
+[node name="Spatial2" parent="." instance=ExtResource( 5 )]
+transform = Transform( -3.99285e-07, -2.45079, 0.000846273, -8.32667e-17, 0.000846273, 2.45079, -2.45079, 3.99285e-07, -1.37875e-10, 17.9272, 4.36501, -1.94422 )

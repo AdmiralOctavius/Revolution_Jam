@@ -1,0 +1,65 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://CodeScenes/IzzyCode/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://FloorPanel.tscn" type="PackedScene" id=2]
+[ext_resource path="res://WorldEnvironment_base.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/Materials/Mat3_worldWall.material" type="Material" id=4]
+
+[node name="World" type="Spatial"]
+
+[node name="World_Geo" type="Spatial" parent="."]
+
+[node name="FloorPanel" parent="World_Geo" instance=ExtResource( 2 )]
+transform = Transform( 100, 0, 0, 0, 1, 0, 0, 0, 100, -0.014595, -3.8147e-06, -0.190886 )
+material/0 = null
+
+[node name="CSGBox" type="CSGBox" parent="World_Geo"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25, -100 )
+material_override = ExtResource( 4 )
+width = 200.0
+height = 50.0
+depth = 10.0
+
+[node name="CSGBox2" type="CSGBox" parent="World_Geo"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25, 100 )
+material_override = ExtResource( 4 )
+width = 200.0
+height = 50.0
+depth = 10.0
+
+[node name="CSGBox3" type="CSGBox" parent="World_Geo"]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, -100.062, 25, 0.215202 )
+material_override = ExtResource( 4 )
+width = 200.0
+height = 50.0
+depth = 10.0
+
+[node name="CSGBox4" type="CSGBox" parent="World_Geo"]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 100, 25, 0 )
+material_override = ExtResource( 4 )
+width = 200.0
+height = 50.0
+depth = 10.0
+
+[node name="CSGBox5" type="CSGBox" parent="World_Geo"]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, -2.33988, 50.7278, 0 )
+visible = false
+material_override = ExtResource( 4 )
+width = 200.0
+height = 10.0
+depth = 200.0
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.91429, 2.82617, -11.1953 )
+activeWitch = true
+
+[node name="WorldEnvironment" parent="." instance=ExtResource( 3 )]
+
+[node name="OmniLight" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -48.7264, 16.0128, 0 )
+omni_range = 26.8409
+
+[node name="Player2" parent="." instance=ExtResource( 1 )]
+transform = Transform( -0.967148, 0, -0.254214, 0, 1, 0, 0.254214, 0, -0.967148, 1.82494, -1.90735e-06, 20.1572 )
+activeRobo = true
+activePlayer = true

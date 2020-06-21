@@ -1,0 +1,36 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path.s3tc="res://.import/tile_016_Normal.png-e870fe15b8688da7da8d853a83c785e3.s3tc.stex"
+path.etc2="res://.import/tile_016_Normal.png-e870fe15b8688da7da8d853a83c785e3.etc2.stex"
+metadata={
+"imported_formats": [ "s3tc", "etc2" ],
+"vram_texture": true
+}
+
+[deps]
+
+source_file="res://assets/64Tex/TEXTURES/TILE/tile_016/tile_016_Normal.png"
+dest_files=[ "res://.import/tile_016_Normal.png-e870fe15b8688da7da8d853a83c785e3.s3tc.stex", "res://.import/tile_016_Normal.png-e870fe15b8688da7da8d853a83c785e3.etc2.stex" ]
+
+[params]
+
+compress/mode=2
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=1
+flags/repeat=true
+flags/filter=false
+flags/mipmaps=true
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+stream=false
+size_limit=0
+detect_3d=false
+svg/scale=1.0
