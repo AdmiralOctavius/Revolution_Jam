@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/lightblue_equirectangular.png" type="Texture" id=1]
 [ext_resource path="res://assets/Space_Level_Objects/Space_Level_Mesh_Lib.tres" type="MeshLibrary" id=2]
-[ext_resource path="res://Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://CodeScenes/IzzyCode/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/Space_Level_Objects/Light_Static.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/Space_Level_Objects/Pillar_Static.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/Space_Level_Objects/Light_Tall_Static.tscn" type="PackedScene" id=6]
@@ -13,6 +13,7 @@
 [ext_resource path="res://assets/Gamemode_Objects/Gamemode_Flag_Red.tscn" type="PackedScene" id=11]
 [ext_resource path="res://assets/Space_Level_Objects/Barrel_Rigid_Body.tscn" type="PackedScene" id=12]
 [ext_resource path="res://assets/Space_Level_Objects/Crate_Rigid_Body.tscn" type="PackedScene" id=13]
+
 
 [sub_resource type="PanoramaSky" id=1]
 

@@ -1,16 +1,19 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=40 format=2]
 
-[ext_resource path="res://assets/Colors.material" type="Material" id=1]
-[ext_resource path="res://assets/Emission.material" type="Material" id=2]
-[ext_resource path="res://assets/GunTextures.png" type="Texture" id=3]
-[ext_resource path="res://assets/GunMaterial.material" type="Material" id=4]
-[ext_resource path="res://assets/MuzzleFlash.material" type="Material" id=5]
-[ext_resource path="res://assets/Gun_Emission.material" type="Material" id=6]
-[ext_resource path="res://assets/32-32_white.png" type="Texture" id=7]
-[ext_resource path="res://assets/Titillium-Regular.otf" type="DynamicFontData" id=8]
-[ext_resource path="res://Player.gd" type="Script" id=9]
-[ext_resource path="res://assets/Gamemode_Objects/Metal_Blue.material" type="Material" id=10]
-[ext_resource path="res://assets/Ruin_Level_Objects/DustStone.material" type="Material" id=11]
+[ext_resource path="res://CodeScenes/IzzyCode/TestSpriteCharacter.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/GunTextures.png" type="Texture" id=2]
+[ext_resource path="res://assets/32-32_white.png" type="Texture" id=3]
+[ext_resource path="res://assets/Titillium-Regular.otf" type="DynamicFontData" id=4]
+[ext_resource path="res://assets/Colors.material" type="Material" id=5]
+[ext_resource path="res://assets/Emission.material" type="Material" id=6]
+[ext_resource path="res://assets/Ruin_Level_Objects/DustStone.material" type="Material" id=7]
+[ext_resource path="res://CodeScenes/IzzyCode/Player.gd" type="Script" id=8]
+[ext_resource path="res://assets/GunMaterial.material" type="Material" id=9]
+[ext_resource path="res://assets/MuzzleFlash.material" type="Material" id=10]
+[ext_resource path="res://assets/Gun_Emission.material" type="Material" id=11]
+[ext_resource path="res://assets/Gamemode_Objects/Metal_Blue.material" type="Material" id=12]
+
+
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 1.1097
@@ -19,9 +22,12 @@ height = 8.38831
 [sub_resource type="BoxShape" id=2]
 extents = Vector3( 0.8, 0.2, 0.8 )
 
+[sub_resource type="BoxShape" id=27]
+extents = Vector3( 1.71677, 5.23051, 1.63545 )
+
 [sub_resource type="SpatialMaterial" id=3]
 resource_name = "GunMaterial.001"
-albedo_texture = ExtResource( 3 )
+albedo_texture = ExtResource( 2 )
 metallic = 0.5
 roughness = 0.542695
 
@@ -56,7 +62,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 98263,
 "index_count": 10164,
-"material": ExtResource( 1 ),
+"material": ExtResource( 5 ),
 "name": "Colors",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -69,7 +75,7 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 98263,
 "index_count": 384,
-"material": ExtResource( 2 ),
+"material": ExtResource( 6 ),
 "name": "Emission",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -3850,13 +3856,10 @@ anti_aliasing = false
 [sub_resource type="DynamicFont" id=26]
 size = 42
 use_filter = true
-font_data = ExtResource( 8 )
-
-[sub_resource type="BoxShape" id=27]
-extents = Vector3( 1.71677, 5.23051, 1.63545 )
+font_data = ExtResource( 4 )
 
 [node name="Player" type="KinematicBody"]
-script = ExtResource( 9 )
+script = ExtResource( 8 )
 
 [node name="Body_CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 5.81098, 0 )
@@ -3868,6 +3871,16 @@ shape = SubResource( 2 )
 
 [node name="Rotation_Helper" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.239, 0 )
+
+[node name="ClimbingCheck" type="Spatial" parent="Rotation_Helper"]
+
+[node name="Aim_Area" type="Spatial" parent="Rotation_Helper/ClimbingCheck"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.07227, 3.05781 )
+
+[node name="Area" type="Area" parent="Rotation_Helper/ClimbingCheck/Aim_Area"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Rotation_Helper/ClimbingCheck/Aim_Area/Area"]
+shape = SubResource( 27 )
 
 [node name="Model" type="Spatial" parent="Rotation_Helper"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -12.405, 0 )
@@ -4050,11 +4063,11 @@ bones/33/bound_children = [  ]
 [node name="GodotBattleBot" type="MeshInstance" parent="Rotation_Helper/Model/Armature/Skeleton"]
 cast_shadow = 0
 mesh = SubResource( 6 )
-material/0 = ExtResource( 1 )
-material/1 = ExtResource( 2 )
-material/2 = ExtResource( 4 )
-material/3 = ExtResource( 5 )
-material/4 = ExtResource( 6 )
+material/0 = ExtResource( 5 )
+material/1 = ExtResource( 6 )
+material/2 = ExtResource( 9 )
+material/3 = ExtResource( 10 )
+material/4 = ExtResource( 11 )
 
 [node name="Animation_Player" type="AnimationPlayer" parent="Rotation_Helper/Model"]
 autoplay = "Idle_unarmed"
@@ -4076,7 +4089,6 @@ anims/Rifle_unequip = SubResource( 21 )
 
 [node name="Camera" type="Camera" parent="Rotation_Helper"]
 transform = Transform( -1, 0, 3.25841e-07, 0, 1, 0, -3.25841e-07, 0, -1, 0, -0.307539, -0.0646362 )
-current = true
 fov = 90.0
 far = 180.0
 
@@ -4133,7 +4145,7 @@ visible = false
 
 [node name="PunchHand" type="CSGBox" parent="Rotation_Helper/PunchCheck"]
 transform = Transform( 1, 0, 0, 0, 0.788247, 0.615359, 0, -0.615359, 0.788247, -3, -3.51705, 2.06515 )
-material_override = ExtResource( 10 )
+material_override = ExtResource( 12 )
 width = 1.20436
 height = 1.16572
 
@@ -4198,7 +4210,7 @@ shape = SubResource( 24 )
 [node name="HackHand" type="CSGBox" parent="Rotation_Helper/HackCheck"]
 transform = Transform( 1, 0, 0, 0, 0.788247, 0.615359, 0, -0.615359, 0.788247, -3, -3.51705, 2.06515 )
 visible = false
-material_override = ExtResource( 10 )
+material_override = ExtResource( 12 )
 width = 1.20436
 height = 1.16572
 
@@ -4241,12 +4253,13 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.166, 5.39841 )
 shape = SubResource( 24 )
 
 [node name="WandCheck" type="Spatial" parent="Rotation_Helper"]
+visible = false
 
 [node name="Spatial" type="Spatial" parent="Rotation_Helper/WandCheck"]
 
 [node name="HackHand2" type="CSGBox" parent="Rotation_Helper/WandCheck/Spatial"]
 transform = Transform( 1, 0, 0, 0, 0.788247, 0.615359, 0, -0.615359, 0.788247, 3.96422, -3.51944, 2.06515 )
-material_override = ExtResource( 10 )
+material_override = ExtResource( 12 )
 width = 1.20436
 height = 1.16572
 
@@ -4258,7 +4271,7 @@ depth = 0.946463
 
 [node name="Wand" type="CSGBox" parent="Rotation_Helper/WandCheck/Spatial/HackHand2"]
 transform = Transform( -0.00214897, -0.237363, 0.0480271, 0.436763, -0.0649425, -2.4334, 0.340967, 0.080796, 3.11756, -0.43233, -0.759373, 2.37125 )
-material_override = ExtResource( 11 )
+material_override = ExtResource( 7 )
 width = 0.293552
 height = 0.718118
 depth = 0.759988
@@ -4319,7 +4332,7 @@ margin_left = -2.5
 margin_top = 4.5
 margin_right = 2.5
 margin_bottom = 20.5
-texture = ExtResource( 7 )
+texture = ExtResource( 3 )
 expand = true
 
 [node name="Top_IMG" type="TextureRect" parent="HUD/Crosshair"]
@@ -4331,7 +4344,7 @@ margin_left = -2.5
 margin_top = -20.5
 margin_right = 2.5
 margin_bottom = -4.5
-texture = ExtResource( 7 )
+texture = ExtResource( 3 )
 expand = true
 
 [node name="Left_IMG" type="TextureRect" parent="HUD/Crosshair"]
@@ -4344,7 +4357,7 @@ margin_top = -2.5
 margin_right = 0.5
 margin_bottom = 12.5
 rect_rotation = 90.0
-texture = ExtResource( 7 )
+texture = ExtResource( 3 )
 expand = true
 
 [node name="Right_IMG" type="TextureRect" parent="HUD/Crosshair"]
@@ -4357,7 +4370,7 @@ margin_top = -2.5
 margin_right = 24.5
 margin_bottom = 12.5
 rect_rotation = 90.0
-texture = ExtResource( 7 )
+texture = ExtResource( 3 )
 expand = true
 
 [node name="Panel" type="Panel" parent="HUD"]
@@ -4402,15 +4415,7 @@ text = "You died
 align = 1
 valign = 1
 
-[node name="ClimbingCheck" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.239, 0 )
-
-[node name="Aim_Area" type="Spatial" parent="ClimbingCheck"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.07227, 3.05781 )
-
-[node name="Area" type="Area" parent="ClimbingCheck/Aim_Area"]
-
-[node name="CollisionShape" type="CollisionShape" parent="ClimbingCheck/Aim_Area/Area"]
-shape = SubResource( 27 )
-[connection signal="body_entered" from="ClimbingCheck/Aim_Area/Area" to="." method="_on_Area_body_entered"]
-[connection signal="body_exited" from="ClimbingCheck/Aim_Area/Area" to="." method="_on_Area_body_exited"]
+[node name="Spatial" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.955057 )
+[connection signal="body_entered" from="Rotation_Helper/ClimbingCheck/Aim_Area/Area" to="." method="_on_Area_body_entered"]
+[connection signal="body_exited" from="Rotation_Helper/ClimbingCheck/Aim_Area/Area" to="." method="_on_Area_body_exited"]

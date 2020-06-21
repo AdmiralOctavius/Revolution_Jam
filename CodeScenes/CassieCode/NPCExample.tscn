@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://CodeScenes/CassieCode/NPCExample.gd" type="Script" id=1]
+[ext_resource path="res://CodeScenes/CassieCode/DialogueBox.png" type="Texture" id=2]
+
+[sub_resource type="CapsuleMesh" id=1]
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 3.9855, 5.12156, 2.79394 )
+
+[node name="NPCExample" type="MeshInstance"]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 2.17706, 12.5844 )
+mesh = SubResource( 1 )
+material/0 = null
+script = ExtResource( 1 )
+
+[node name="Talk" type="Area" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="Talk"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.76702, 9.53674e-07 )
+shape = SubResource( 2 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( -0.756185, 0.138059, -0.639628, 0.654358, 0.159542, -0.739163, -1.06609e-07, -0.97749, -0.210983, -1.60888, -3.4558, -1.61925 )
+
+[node name="Dialogue" type="Control" parent="."]
+visible = false
+margin_right = 1024.0
+margin_bottom = 599.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Box" type="NinePatchRect" parent="Dialogue"]
+margin_left = 153.0
+margin_top = 53.0
+margin_right = 494.0
+margin_bottom = 422.0
+texture = ExtResource( 2 )
+patch_margin_left = 32
+patch_margin_top = 34
+patch_margin_right = 32
+patch_margin_bottom = 31
+
+[node name="Text" type="Label" parent="Dialogue/Box"]
+margin_left = 12.3805
+margin_top = 13.1543
+margin_right = 52.3805
+margin_bottom = 27.1543
+[connection signal="body_entered" from="Talk" to="." method="_on_Talk_body_entered"]
+[connection signal="body_exited" from="Talk" to="." method="_on_Talk_body_exited"]

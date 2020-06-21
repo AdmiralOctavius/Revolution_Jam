@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://CodeScenes/CassieCode/Player.gd" type="Script" id=1]
+[ext_resource path="res://CodeScenes/CassieCode/NPCExample.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/Emission.material" type="Material" id=3]
+
+[sub_resource type="CapsuleShape" id=1]
+
+[sub_resource type="PlaneMesh" id=2]
+
+[sub_resource type="ConcavePolygonShape" id=3]
+data = PoolVector3Array( 1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1 )
+
+[node name="Spatial" type="Spatial"]
+
+[node name="NPCExample2" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, -12.9165, 2.17706, 12.5844 )
+
+[node name="Player" type="KinematicBody" parent="." groups=[
+"Player",
+]]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.58612, 0 )
+script = ExtResource( 1 )
+
+[node name="Camera" type="Camera" parent="Player"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.63714, 0 )
+current = true
+
+[node name="CollisionShape" type="CollisionShape" parent="Player"]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 23.1969, 0, 0, 0, 1, 0, 0, 0, 28.4172, 0, -1.27967, 0 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="MeshInstance"]
+
+[node name="CollisionShape" type="CollisionShape" parent="MeshInstance/StaticBody"]
+shape = SubResource( 3 )
+
+[node name="NPCExample1" parent="." instance=ExtResource( 2 )]
+
+[node name="CSGBox" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.15821, 0, 16.4464 )
+height = 12.1293
+depth = 8.05231
+material = ExtResource( 3 )

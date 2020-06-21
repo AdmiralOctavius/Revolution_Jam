@@ -1,9 +1,12 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=25 format=2]
 
-[ext_resource path="res://Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://CodeScenes/IzzyCode/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://LadderProto.tscn" type="PackedScene" id=2]
-[ext_resource path="res://PunchWall.tscn" type="PackedScene" id=3]
-[ext_resource path="res://TestBlock.tscn" type="PackedScene" id=4]
+[ext_resource path="res://CodeScenes/IzzyCode/PunchWall.tscn" type="PackedScene" id=3]
+[ext_resource path="res://CodeScenes/IzzyCode/TestBlock.tscn" type="PackedScene" id=4]
+[ext_resource path="res://CodeScenes/IzzyCode/textured_block.tscn" type="PackedScene" id=5]
+[ext_resource path="res://CodeScenes/IzzyCode/TestSpriteCharacter.tscn" type="PackedScene" id=6]
+[ext_resource path="res://CodeScenes/CassieCode/NPCExample.tscn" type="PackedScene" id=7]
 
 [sub_resource type="PlaneMesh" id=1]
 size = Vector2( 80, 80 )
@@ -36,8 +39,10 @@ sun_energy = 16.0
 background_mode = 2
 background_sky = SubResource( 6 )
 ambient_light_color = Color( 1, 0.934814, 0.90625, 1 )
+ambient_light_energy = 0.17
 ambient_light_sky_contribution = 0.6
-fog_height_min = 0.0
+fog_enabled = true
+fog_depth_begin = 26.3
 fog_height_max = 100.0
 tonemap_mode = 3
 ssao_enabled = true
@@ -50,6 +55,7 @@ glow_levels/2 = true
 glow_levels/5 = false
 glow_intensity = 1.0
 glow_strength = 1.1
+glow_bloom = 0.04
 glow_blend_mode = 0
 glow_bicubic_upscale = true
 adjustment_enabled = true
@@ -85,6 +91,13 @@ bounce = 0.6
 bounce = 0.6
 
 [node name="Testing_Area" type="Spatial"]
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+activePlayer = true
+
+[node name="Player2" parent="." instance=ExtResource( 1 )]
+transform = Transform( 0.897374, 0, 0.441271, 0, 1, 0, -0.441271, 0, 0.897374, -19.0731, 2.68514, -7.55962 )
+activeWitch = true
 
 [node name="TestBlock" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 29.6447, 8.04382, -9.95415 )
@@ -139,6 +152,9 @@ material/0 = SubResource( 2 )
 [node name="CollisionShape" type="CollisionShape" parent="Box/Wall_2/StaticBody"]
 shape = SubResource( 3 )
 
+[node name="Spatial" parent="Box/Wall_2" instance=ExtResource( 5 )]
+transform = Transform( 2.45079, 0, 0, 0, 2.45079, -2.24628e-17, -8.32667e-17, -2.24628e-17, 2.45079, 2.02887, 20.3126, -32.7172 )
+
 [node name="Wall_3" type="MeshInstance" parent="Box"]
 transform = Transform( -1.62921e-07, 1, -0.000488118, 0, 0.000488118, 1, 1, 1.62921e-07, -7.95246e-11, -40.2198, 37.0752, 0.0846462 )
 cast_shadow = 2
@@ -162,7 +178,9 @@ material/0 = SubResource( 2 )
 shape = SubResource( 3 )
 
 [node name="OmniLight" type="OmniLight" parent="Box"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 42.005, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -30.2491, 60.7141, 0 )
+light_energy = 0.24
+light_indirect_energy = 0.79
 shadow_enabled = true
 shadow_bias = 0.4
 omni_range = 60.0
@@ -172,7 +190,14 @@ cast_shadow = 0
 mesh = SubResource( 4 )
 material/0 = SubResource( 5 )
 
-[node name="Player" parent="." instance=ExtResource( 1 )]
+[node name="SpotLight" type="SpotLight" parent="Box"]
+transform = Transform( 0.879369, -0.437224, 0.188535, 0.389027, 0.888061, 0.244961, -0.274534, -0.142066, 0.951025, 20.6103, 8.76622, 12.945 )
+light_color = Color( 0.992157, 0.996078, 0.894118, 1 )
+light_energy = 3.43
+light_indirect_energy = 12.61
+shadow_enabled = true
+spot_range = 17.7437
+spot_angle = 21.8311
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 7 )
@@ -327,3 +352,9 @@ shape = SubResource( 8 )
 [node name="MeshInstance" type="MeshInstance" parent="Cubes/GreenCube6"]
 mesh = SubResource( 9 )
 material/0 = SubResource( 12 )
+
+[node name="Spatial" parent="." instance=ExtResource( 6 )]
+transform = Transform( -0.0240484, 0, -0.999711, 0, 1, 0, 0.999711, 0, -0.0240484, 21.5759, 1.6736, 11.8333 )
+
+[node name="NPCExample" parent="." instance=ExtResource( 7 )]
+transform = Transform( 0.783744, -1.72064, 2.80328e-07, 0, -3.08039e-07, -1.89073, 1.72064, 0.783744, -1.27688e-07, -29.8977, 5.08986, 18.5961 )

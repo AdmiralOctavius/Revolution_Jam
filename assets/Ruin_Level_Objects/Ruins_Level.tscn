@@ -1,13 +1,14 @@
 [gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://assets/Ruin_Level_Objects/Ruin_Level_Mesh_Lib.tres" type="MeshLibrary" id=1]
-[ext_resource path="res://Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://CodeScenes/IzzyCode/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/Gamemode_Objects/Banner_Blue.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/Gamemode_Objects/Gamemode_Flag_Blue.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/Gamemode_Objects/Banner_Red.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/Gamemode_Objects/Gamemode_Flag_Red.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/Ruin_Level_Objects/Debris_Pillar.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/Ruin_Level_Objects/Debris.tscn" type="PackedScene" id=8]
+
 
 [sub_resource type="ProceduralSky" id=1]
 
